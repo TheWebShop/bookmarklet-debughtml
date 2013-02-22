@@ -1,15 +1,69 @@
-<h1>HTML Debugging Bookmarklet</h1>
-<p>One nasty by-product of CMSs and WYSIWYG created content is orphan tags. I often am tasked with "cleaning up" web pages whose content has gone from functional to pathological due in large part to repeated editing. Which is why it caught my eye when Ben Alman tweeted about a <a href="https://github.com/cowboy/benalman.com-idea/commit/d99edd33a5000875776393e28afa412496260850">few simple lines of LESS</a> which he had added to a project to help track down vestigial page elements. I thought it might be fun to share that same functionality in the form of a:</p>
-<p><strong><a href='javascript:(function(){var b="";var c=[["H1","#f00"],["H2","#0a0"],["H3","#00f"],["H4","#f0f"],["H5","#0ff"],["H6","#0ff"],["P","#0aa"],["LI","#aa0"],["A","#000"]];var e=function(f,g){return f+%27:before {padding: 0 4px; margin-right: 4px; color: #fff;content: "%27+f+%27";background: %27+g+";} "};for(var d=0;d<c.length;d++){b+=e(c[d][0],c[d][1])}if("\v"=="v"){document.createStyleSheet().cssText=b}else{var a=document.createElement("style");a.type="text/css";document.getElementsByTagName("head")[0].appendChild(a);a[(typeof document.body.style.WebkitAppearance=="string")?"innerText":"innerHTML"]=b}})();'>Debug HTML</a></strong> (drag this to your bookmarks bar or right-click and add to bookmarks).</p>
-<p></p>
-<h2>How does it work?</h2>
-<p>Click the "Debug HTML" link above to see the additions it makes to this page. Right away you'll notice some hidden passengers, empty tags (like this <a href="#"></a>invisible anchor)which could conceivably have been included by a content owner without their knowledge.</p>
-<p>The bookmarklet uses Paul Irish's <a href="http://paulirish.com/2008/bookmarklet-inject-new-css-rules/">Bookmarklet: Inject New Css Rules</a> technique to add some <code>:before</code> pseudo elements which draw attention to headings, list elements, paragraphs, and anchors. I have found these to be the most common offenders when it comes to markup bloat. 
-<h2>Why should I care?</h2>
-<p>Sometimes these unintended additions to page content will slip by completely unnoticed, but more often then not they lead to one of the following symptoms.</p>
-<ul>
-  <li>Inconsistent paragraph spacing.</li>
-  <li>Unexpected cursor changes.</li>
-  <li>Frustrating WYSIWYG editing.</li>
-  <li></li>
-</ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HTML Debugging Bookmarklet</title>
+    <meta name="description" content="Demo and explanation for an HTML debugging bookmarklet">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container">
+
+      <h1>HTML Debugging Bookmarklet</h1>
+
+      <p>One nasty by-product of CMSs and WYSIWYG created content is orphan tags. The Web Shop is often tasked with "cleaning up" web pages whose content has gone from functional to pathological due in large part to repeated editing. Which is why it caught our eyes when Ben Alman tweeted about a <a href="https://github.com/cowboy/benalman.com-idea/commit/d99edd33a5000875776393e28afa412496260850">few simple lines of LESS</a> which he had added to a project to help track down vestigial page elements. We thought it might be fun to share that same functionality in the form of a bookmarklet.</p>
+
+      <a href="https://github.com/TheWebShop/bookmarklet-debughtml"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+      <p><strong><a href='javascript:(function(){var b="";var c=[["H1","#f00"],["H2","#0a0"],["H3","#00f"],["H4","#f0f"],["H5","#0ff"],["H6","#0ff"],["P","#0aa"],["LI","#aa0"],["A","#000"]];var e=function(f,g){return f+%27:before {padding: 0 4px; margin-right: 4px; color: #fff;content: "%27+f+%27";background: %27+g+";} "};for(var d=0;d<c.length;d++){b+=e(c[d][0],c[d][1])}if("\v"=="v"){document.createStyleSheet().cssText=b}else{var a=document.createElement("style");a.type="text/css";document.getElementsByTagName("head")[0].appendChild(a);a[(typeof document.body.style.WebkitAppearance=="string")?"innerText":"innerHTML"]=b}})();'>Debug HTML</a></strong> (drag this to your bookmarks bar or right-click and add to bookmarks).</p>
+
+      <p></p>
+
+      <h2>How does it work?</h2>
+
+      <p>Simply click the <a href='javascript:(function(){var b="";var c=[["H1","#f00"],["H2","#0a0"],["H3","#00f"],["H4","#f0f"],["H5","#0ff"],["H6","#0ff"],["P","#0aa"],["LI","#aa0"],["A","#000"]];var e=function(f,g){return f+%27:before {padding: 0 4px; margin-right: 4px; color: #fff;content: "%27+f+%27";background: %27+g+";} "};for(var d=0;d<c.length;d++){b+=e(c[d][0],c[d][1])}if("\v"=="v"){document.createStyleSheet().cssText=b}else{var a=document.createElement("style");a.type="text/css";document.getElementsByTagName("head")[0].appendChild(a);a[(typeof document.body.style.WebkitAppearance=="string")?"innerText":"innerHTML"]=b}})();'>bookmarklet</a> to see the additions it makes to this page. Right away you'll notice some hidden passengers, empty tags (like this <a href="#"></a>invisible anchor)which could conceivably have been included by a content owner without their knowledge.</p>
+      <p>The bookmarklet uses Paul Irish's <a href="http://paulirish.com/2008/bookmarklet-inject-new-css-rules/">Bookmarklet: Inject New Css Rules</a> technique to add some <code>:before</code> pseudo elements which draw attention to headings, list elements, paragraphs, and anchors. I have found these to be the most common offenders when it comes to markup bloat.</p>
+
+      <h2>Why should I care?</h2>
+
+      <p>Sometimes these unintended additions to page content will slip by completely unnoticed, but more often then not they lead to one of the following symptoms.</p>
+
+      <ul>
+        <li>Inconsistent paragraph spacing.</li>
+        <li>Unexpected cursor changes.</li>
+        <li>Frustrating WYSIWYG editing.</li>
+        <li></li>
+      </ul>
+
+      <p>Let us know what you think by raising an <a href="https://github.com/TheWebShop/bookmarklet-debughtml/issues">issue</a> or dropping us a line <a href="https://twitter.com/TheWebShopOrg">@TheWebShopOrg</a>.</p>
+
+    </div>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36013038-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </body>
+</html>

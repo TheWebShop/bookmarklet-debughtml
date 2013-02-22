@@ -1,0 +1,18 @@
+body {
+  padding: 0 20px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #555;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+h1, h2 {
+  margin-top: 2.5em;
+  color: #5B6B80;
+}
+ul {
+  list-style: none;
+}
